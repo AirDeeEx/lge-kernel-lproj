@@ -847,14 +847,14 @@ static void mcs8000_work(struct work_struct *work)
 						if ((comp_ver == 2))
 							input_report_key(ts->input_dev, KEY_HOMEPAGE, touchState ? PRESS_KEY : RELEASE_KEY);
 						else
+							#ifdef CONFIG_MACH_MSM7X25A_E0EU
+							input_report_key(ts->input_dev, KEY_BACK, touchState ? PRESS_KEY : RELEASE_KEY);
+							#else
 							input_report_key(ts->input_dev, KEY_MENU, touchState ? PRESS_KEY : RELEASE_KEY);
+							#endif
 						break;
 					case 0x3:
-						#ifdef CONFIG_MACH_MSM7X25A_E0EU
-						input_report_key(ts->input_dev, KEY_BACK, touchState ? PRESS_KEY : RELEASE_KEY);
-						#else
 						input_report_key(ts->input_dev, KEY_MENU, touchState ? PRESS_KEY : RELEASE_KEY);
-						#endif
 						break;
 					case 0x4:
 						input_report_key(ts->input_dev, KEY_SIM_SWITCH, touchState ? PRESS_KEY : RELEASE_KEY);
